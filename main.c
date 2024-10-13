@@ -130,6 +130,7 @@ void movement(char **board, Joueur *playerPos, Boite *boitePos, Emplacement *emp
                 board[boitePos->x][boitePos->y] = 'X'; // Placer la boîte à la nouvelle position
                 playerPos->x = move_x; // Déplacer le joueur
                 board[playerPos->x][playerPos->y] == ' ';
+                board[playerPos->x][playerPos->y] == 'o';
             }
         } else if (playerPos->movement == 's') { // Déplacement vers le bas
             if (board[boitePos->x + 1][boitePos->y] == ' ') {
@@ -138,6 +139,7 @@ void movement(char **board, Joueur *playerPos, Boite *boitePos, Emplacement *emp
                 board[boitePos->x][boitePos->y] = 'X'; // Placer la boîte à la nouvelle position
                 playerPos->x = move_x; // Déplacer le joueur
                 board[playerPos->x][playerPos->y] == ' ';
+                board[playerPos->x][playerPos->y] == 'o';
             }
         } else if (playerPos->movement == 'q') { // Déplacement vers la gauche
             if (board[boitePos->x][boitePos->y - 1] == ' ') {
@@ -146,6 +148,7 @@ void movement(char **board, Joueur *playerPos, Boite *boitePos, Emplacement *emp
                 board[boitePos->x][boitePos->y] = 'X'; // Placer la boîte à la nouvelle position
                 playerPos->y = move_y; // Déplacer le joueur
                 board[playerPos->x][playerPos->y] == ' ';
+                board[playerPos->x][playerPos->y] == 'o';
             }
         } else if (playerPos->movement == 'd') { // Déplacement vers la droite
             if (board[boitePos->x][boitePos->y + 1] == ' ') {
@@ -154,6 +157,7 @@ void movement(char **board, Joueur *playerPos, Boite *boitePos, Emplacement *emp
                 board[boitePos->x][boitePos->y] = 'X'; // Placer la boîte à la nouvelle position
                 playerPos->y = move_y; // Déplacer le joueur
                 board[playerPos->x][playerPos->y] == ' ';
+                board[playerPos->x][playerPos->y] == 'o';
             }
         }
     } else {
@@ -168,11 +172,16 @@ void movement(char **board, Joueur *playerPos, Boite *boitePos, Emplacement *emp
     }
 
     // Vérification si la boîte est sur l'emplacement
-    if (boitePos->x - 1 == empPos->x && boitePos->y - 1 == empPos->y && boitePos->x + 1 == empPos->x && boitePos->y + 1 == empPos->y) {
-        printf("Bien joué c'était un peu facile nan ?\n");
-        exit(0);
-    }
+    if ((boitePos->x == empPos->x && abs(boitePos->y - empPos->y) == 1) ||
+    (boitePos->y == empPos->y && abs(boitePos->x - empPos->x) == 1)) {
+    printf("Bien joué c'était un peu facile nan ?\n");
+    exit(0);
 }
+
+    }
+
+    
+
 
 
 // Mouvement de la boîte
